@@ -16,8 +16,16 @@ endif
 " End Vim-Plug installation----------------
 
 call plug#begin('~/.vim/plugged')
+Plug 'Shougo/neocomplete.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
+Plug 'tomtom/tcomment_vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'w0rp/ale'
 call plug#end()
 
+" General remappings
 inoremap jj <Esc>`^
 set backspace=indent,eol,start " backspace over everything in insert mode
 noremap j h
@@ -29,4 +37,22 @@ noremap ; l
 :command W w
 :command Q q
 
+" Enable status line
 set laststatus=2
+
+" NeoComplete settings
+let g:neocomplete#enable_at_startup = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ neocomplete#start_manual_complete()
+function! s:check_back_space() "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+" Colorscheme settings
+colorscheme gruvbox
+set background=dark
+
+" ALE settings
+let g:ale_sign_column_always = 1
