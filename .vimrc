@@ -48,7 +48,7 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
 function! s:check_back_space() "{{{
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+endfunction "}}}
 
 " Colorscheme settings
 colorscheme gruvbox
