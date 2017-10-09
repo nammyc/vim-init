@@ -23,6 +23,8 @@ Plug 'tomtom/tcomment_vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
 " General remappings
@@ -56,3 +58,28 @@ set background=dark
 
 " ALE settings
 let g:ale_sign_column_always = 1
+
+" Custom settings
+set scrolloff=2
+set number
+set showmode
+set showcmd
+set ruler
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set hlsearch
+set incsearch
+set nobackup
+
+" NERDTree settings
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | e    xe 'NERDTree' argv()[0] | wincmd p | ene | endif
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree    ()) | q | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let NERDTreeShowHidden=1
+let NERDTreeQuitOnOpen=1
+let NERDTreeMinimalUI = 1
+ 87 let NERDTreeDirArrows = 1
