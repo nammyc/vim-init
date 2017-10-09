@@ -82,4 +82,4 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeShowHidden=1
 let NERDTreeQuitOnOpen=1
 let NERDTreeMinimalUI = 1
- 87 let NERDTreeDirArrows = 1
+let NERDTreeDirArrows = 1
