@@ -38,6 +38,12 @@ noremap ; l
 :command Wq wq
 :command W w
 :command Q q
+set splitbelow
+set splitright
+nnoremap <C-J> <C-W><C-H>
+nnoremap <C-K> <C-W><C-J>
+nnoremap <C-L> <C-W><C-K>
+nnoremap <C-;> <C-w><C-L>
 
 " Enable status line
 set laststatus=2
