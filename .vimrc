@@ -16,10 +16,14 @@ endif
 " End Vim-Plug installation----------------
 
 call plug#begin('~/.vim/plugged')
-Plug 'Shougo/neocomplete.vim'
-Plug 'flazz/vim-colorschemes'
-Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-mucomplete'
+Plug 'rip-rip/clang_complete'
+Plug 'artur-shaik/vim-javacomplete2'
+Plug 'airblade/vim-rooter'
 Plug 'tomtom/tcomment_vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'jiangmiao/auto-pairs'
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
@@ -29,7 +33,6 @@ call plug#end()
 
 " General remappings
 inoremap jj <Esc>`^
-set backspace=indent,eol,start " backspace over everything in insert mode
 noremap j h
 noremap k j
 noremap l k
@@ -38,32 +41,10 @@ noremap ; l
 :command Wq wq
 :command W w
 :command Q q
-set splitbelow
-set splitright
 nnoremap <C-J> <C-W><C-H>
 nnoremap <C-K> <C-W><C-J>
 nnoremap <C-L> <C-W><C-K>
 nnoremap <C-;> <C-w><C-L>
-
-" Enable status line
-set laststatus=2
-
-" NeoComplete settings
-let g:neocomplete#enable_at_startup = 1
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ neocomplete#start_manual_complete()
-function! s:check_back_space() "{{{
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction "}}}
-
-" Colorscheme settings
-colorscheme gruvbox
-set background=dark
-
-" ALE settings
-let g:ale_sign_column_always = 1
 
 " Custom settings
 set scrolloff=2
@@ -77,6 +58,34 @@ set expandtab
 set hlsearch
 set incsearch
 set nobackup
+set splitbelow
+set splitright
+set backspace=indent,eol,start " backspace over everything in insert mode
+set laststatus=2 " Enable status line
+
+" Colorscheme settings
+colorscheme gruvbox
+set background=dark
+
+" MUcomplete settings
+set completeopt+=menuone
+inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
+inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
+inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
+let g:mucomplete#enable_auto_at_startup = 1
+set completeopt+=noselect
+set completeopt+=noinsert
+
+" clang_complete settings
+let g:clang_library_path='/usr/lib/llvm-4.0/lib' " This must change to reflect proper clang lib
+let g:clang_user_options = '-std=c++17'
+let g:clang_complete_auto = 1
+
+" javacomplete2 settings
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+" ALE settings
+let g:ale_sign_column_always = 1
 
 " NERDTree settings
 autocmd StdinReadPre * let s:std_in=1
