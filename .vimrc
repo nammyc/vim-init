@@ -73,8 +73,6 @@ set background=dark
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-set completeopt+=noselect
-set completeopt+=noinsert
 
 " clang_complete settings
 let g:clang_library_path='/usr/lib/llvm-4.0/lib/libclang-4.0.so.1' " This must change to reflect proper clang lib
