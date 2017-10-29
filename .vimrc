@@ -16,7 +16,9 @@ endif
 " End Vim-Plug installation----------------
 
 call plug#begin('~/.vim/plugged')
-Plug 'lifepillar/vim-mucomplete'
+Plug 'Shougo/deoplete.nvim' " run pip3 install neovim, or install neovim from apt/brew
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'rip-rip/clang_complete'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'airblade/vim-rooter'
@@ -67,22 +69,21 @@ set laststatus=2 " Enable status line
 colorscheme gruvbox
 set background=dark
 
-" MUcomplete settings
-set completeopt+=menuone
-inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
-inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
-inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
-let g:mucomplete#enable_auto_at_startup = 1
+" deoplete settings
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 set completeopt+=noselect
 set completeopt+=noinsert
 
 " clang_complete settings
-let g:clang_library_path='/usr/lib/llvm-4.0/lib' " This must change to reflect proper clang lib
+let g:clang_library_path='/usr/lib/llvm-4.0/lib/libclang-4.0.so.1' " This must change to reflect proper clang lib
 let g:clang_user_options = '-std=c++17'
 let g:clang_complete_auto = 1
 
 " javacomplete2 settings
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
+let g:JavaComplete_ClosingBrace = 0
 
 " ALE settings
 let g:ale_sign_column_always = 1
